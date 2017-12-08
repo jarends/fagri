@@ -1,7 +1,7 @@
 {
     "name": "fagri",
     "version": "0.0.1",
-    "description": "A fast text grid with column resize and equal height cells.",
+    "description": "A fast text grid with column resize and equal height cells per row.",
     "main": "./src/js/main.js",
     "scripts": {
         "postinstall": "npm run once && npm run app",

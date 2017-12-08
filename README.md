@@ -1,5 +1,5 @@
 # fagri
-A fast text grid with column resize and equal height cells.
+A fast text grid with column resize and equal height cells per row.
   
 <br/>     
 Enjoy!

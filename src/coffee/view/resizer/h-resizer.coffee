@@ -125,7 +125,6 @@ class HResizer extends ViewNode
 
     init: () ->
         @emap = new EMap()
-        console.log 'hresizer.init: ', @ctx
 
 
     startResize: (event) =>

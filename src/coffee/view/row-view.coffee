@@ -5,9 +5,6 @@ HResizer   = require './resizer/h-resizer'
 
 class RowView extends ViewNode
 
-    init: () ->
-        console.log 'row.init: ', @ctx
-
 
     render: () ->
         tag:       'div'

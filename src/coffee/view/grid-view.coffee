@@ -13,7 +13,6 @@ class GridView extends ViewNode
         @emap           = new EMap()
         @viewportRect   = new Rect()
         @contentRect    = new Rect()
-        @renderers      = []
         @rendererMap    = {}
         @cache          = []
         @startIndex     = 0
@@ -21,8 +20,6 @@ class GridView extends ViewNode
         @totalHeight    = 0
         @drawTimeout    = null
         @scrollY        = NaN
-
-        console.log 'grid.init: ', @ctx
 
         @emap.map window, 'resize',               @layout, @
         @emap.map @ctx,   'HResizer.update-cell', @onLayout, @
@@ -59,7 +56,6 @@ class GridView extends ViewNode
             widths = []
             widths.push cell.w1 for cell in row.cells
         @ctx.grid.layout widths.slice 1
-        console.log 'view height: ', @ctx.grid.height
         @draw()
 
 
@@ -104,7 +100,12 @@ class GridView extends ViewNode
                     inject: ctx: @ctx
 
                 if not renderer
-                    renderer = @cache.pop() or new RowView cfg
+                    renderer = @cache.pop()
+                    if not renderer
+                         renderer = new RowView cfg
+                    else
+                        renderer.updateCfg cfg
+                        renderer.updateNow()
                     renderer.appendTo content
                 else
                     renderer.updateCfg cfg
@@ -116,6 +117,7 @@ class GridView extends ViewNode
 
         for i, renderer of oldMap
             renderer.remove()
+            @cache.push renderer
         @rendererMap = newMap
 
 
@@ -163,4 +165,3 @@ class GridView extends ViewNode
 
 
 module.exports = GridView
-

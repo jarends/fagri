@@ -1,0 +1,47 @@
+{
+    "name": "fagri",
+    "version": "0.0.1",
+    "description": "A fast text grid with column resize and equal height cells.",
+    "main": "./src/js/main.js",
+    "scripts": {
+        "postinstall": "npm run once && npm run app",
+        "start": "npm run watch",
+        "once": "npm run src-once && npm run scss-once && wzp -ub false -bp ./src -p ./js/main.js",
+        "watch": "npm run scss-once && concurrently -k -r 'salter' 'npm run src-watch' 'npm run scss-watch' 'wzp -w -ub false -bp ./src -p ./js/main.js'",
+        "src-once": "coffee -c -m -o ./src/js ./src/coffee",
+        "src-watch": "coffee -w -m -o ./src/js ./src/coffee",
+        "scss-once": "node-sass --source-map true -o ./src/css ./src/scss",
+        "scss-watch": "node-sass --source-map true -w -o ./src/css ./src/scss",
+        "app": "electron ./src/index.html"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jarends/fagri.git"
+    },
+    "keywords": [
+        "grid",
+        "equal height",
+        "resizable columns",
+        "fast"
+    ],
+    "author": "jarends",
+    "license": "Unlicense",
+    "bugs": {
+        "url": "https://github.com/jarends/fagri/issues"
+    },
+    "homepage": "https://github.com/jarends/fagri#readme",
+    "dependencies": {
+        "emap": "latest",
+        "mycs": "git+https://git@github.com/jarends/mycs.git#master",
+        "two-trees": "git+https://git@github.com/jarends/two-trees.git#master"
+    },
+    "devDependencies": {
+        "coffee-script": "^1.12.7",
+        "concurrently": "^3.4.0",
+        "cross-spawn": "^5.1.0",
+        "electron": "1.7.5",
+        "node-sass": "^4.5.2",
+        "salter": "^1.1.4",
+        "werkzeug-packer": "0.0.6"
+    }
+}

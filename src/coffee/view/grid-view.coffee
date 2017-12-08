@@ -22,7 +22,7 @@ class GridView extends ViewNode
         @scrollY        = NaN
 
         @emap.map window, 'resize',               @layout, @
-        @emap.map @ctx,   'HResizer.update-cell', @onLayout, @
+        @emap.map @ctx,   'HResizer.update-cell', @layout, @
 
 
     onMount: () ->
@@ -44,10 +44,6 @@ class GridView extends ViewNode
 
     onScroll: () =>
         @draw()
-
-
-    onLayout: (event, widths) ->
-        @layout widths
 
 
     layout: (widths) ->
